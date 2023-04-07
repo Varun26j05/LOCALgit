@@ -3,5 +3,5 @@
 AND THIS IS THE PARAGRAPH 
 this is a paragraph up here
 
-##This is propably a sub heading 
+## This is propably a sub heading 
 this is an other paragraph
