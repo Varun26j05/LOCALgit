@@ -1,0 +1,214 @@
+***Getting Started***
+Create a new folder and right click> more options> open with git bash here
+need to get started with entering username and email to save all the changes so we can view who changed it 
+$ git config --global user.name varun
+$ git config --global user.email varun26j05@gmail.commands
+to check out our username or email
+$ git config --global user.name
+$ git config --global user.email
+
+***To open VS Code***
+$ code . 
+
+***To check all the files present in a folder***
+(with .,..,.git extension --> hidden files{to store the changes})
+$ git init --> to initialize
+$ ls --> to view all the files present
+$ ls -lart --> to view all the content in that folder with the hidden files
+
+***To check out the present status of that file***
+$ git status
+
+***To Create a New File***
+$ touch nameoffile.py
+then the file will be created
+we can now go to vs code and add the code to the file 
+
+"https://media.discordapp.net/attachments/1063817801632067635/1066663299007119380/image.png?width=659&height=283"
+***To add that file to git***
+$ git add nameoffile.py
+this will be added to git and it will be in the 'stagging' stage
+$ git status 
+you can see a newfile: nameoffile.py
+it shows that a new file is added to git
+now we can stage that and we can edit or remove that
+
+***To commit***
+$ git commit --> all the changes are now saved
+$ git commit nameoffile.py --> to save all the changes in that particular file
+A new VIM terminal opens press 'i'- to insert or click on top or go to top with arrows and add some description about the changed or additions or deletions
+and then press esc and :wq --> to exit that VIM terminal
+$ git status 
+shows nothing to commit, working tree clean means nothing to save all are saved
+if we add some new line then it will show a green line before the line and if we are changing some line of code then it shows blue line in front of the line and a red triangle if we delete a line of code
+this green/blue line vanishes as we add it
+the file name in the folder appears yellow if add the code and not add/commit it
+
+***If we want to add multiple files at a time***
+$ touch temp.py
+$ touch about.py
+$ git add -A --> capital A
+$ git status --> shows there's a newfile added with green colour
+if we dont add that file first and check out git status then it will show new files in red colour
+
+***To commit without opening VIM Terminal***
+$ git commit -m "Some description about the recent changes"  
+now new files gets commited 
+to check whether any files are not commited user
+$ git status
+
+***To commit multiple files***
+$ git commit -a
+
+first we need to add some files to the git and then we need to commit 
+if we add it gets to the stagged stage and from there we can commit
+
+***To undo the changes on that file***
+$ git checkout temp.py --> undo all the changes that were done after commiting the file
+this is useful as we bymistakely erase data in that file and now we want to retrieve the last code
+
+***To undo all the changes in all file***
+$ git checkout -f
+undo all the changes in all the files that were done after commiting
+if it says updated 0 paths then it updated or undoed nothing
+
+***To view the log***
+$ git log
+after getting into log file to come to original git bash click 'q'
+to view only some particular number of previous logs
+$ git log -p -5 --> only displays the last 5 logs 
+
+***To view the difference between the previous file and the present file***
+$ git diff --> shows the changes which were made from the last commit/add/newfile to now
+if nothing shows then it says that you have done no updates/changes to the file from the last commit
+$ git diff --staged --> shows all the changes which were made from the last commit
+
+***To commit somthing with automatically adding it***
+$ git commit -a -m "description about your recent changes"
+
+***To delete files***
+$ git rm nameoffile.py --> to remove a particular file from the hard disk
+$ git rm --cached nameoffile.py --> to remove a particular file from staging area
+$ ls --> to check whether a file is deleted or not
+
+***To get a short status***
+$ git status -s 
+gets all the changes from the last add/commit
+M  before the file name is modified
+red M --> changed but not added/commited
+green M --> added but not commited
+green M and red M --> modified in both staging area and work area(changed after commiting and also after adding)
+first letter represents stagging area and the second letter represents working area
+Green A --> added
+Red D --> deleted
+
+***Ignoring files***
+while adding code to git server we dont want to add some files like log files as they occupy a lot of space and waste the cloud space
+so we create a new file named .gitignore
+$ touch .gitignore
+and lets create some log files 
+$ touch mylog.txt
+and enter the name of the log file in .gitignore file
+now if we want to see what all changes are done
+$ git status
+it just shows the file .gitignore but not mylog.txt 
+so we succesfully ignored mylog.txt
+
+if we add a '/' before the log file name i.e /mylog.txt then it will only ignore the mylog.txt file where .gitignore is present 
+it will add all others with name mylog.txt in other folder and ignore mylog.txt in which .gitignore file is present
+
+if we want to ignore all the files with .log file ext then we can add *.log in .gitignore file
+so it will ignore all the files that are with .log extension
+if we want to ignore some folder then write that folder name and add a '/' after that i.e somefoldername/
+
+***Branches***
+if you are working in some company and wanted to change some code in master branch(the main branch) but you by mistakely changed something that gets down the server so it's a problem
+so we create a copy of that code/ make a branch of it and then change the code in the copy and test it before we do changes to master code
+default branch is master branch that's why when we go for $ git status it shows on master branch no changes to commit
+
+***Creating a new Branch***
+$ git branch feature1
+a new branch with the same code named feature 1 will be created
+to check out all the branches 
+$ git branch
+to switch to feature1 branch
+$ git checkout feature1 
+to get back to master branch 
+$ git checkout master
+we can do some changes in feature1 branch like add some text in some file and then save it
+as soon as we switch to master branch we don't find any of that code in the file
+again if we switch to feature1 branch we get that code back and we can work on that --> something like we are creating a virtual environment in git
+
+if the code works then we can merge that with the master branch
+so to merge: (first we need to be in the master branch)
+$ git merge feature1
+so now the changes in the feature1 branch gets updated in the master branch
+now you can view all the changes which you have done in the feature1 branch in the master code branch
+
+***If we want to create the branch and switch to the branch simultaneously***
+$ git checkout -b nameofbranch
+it will create a new branch and then it will switch to that branch
+checkout by:
+$ git branch
+
+***Hosting your git file on github***
+go to github create a new repository and then name it make it public/private
+copy the code saying:
+git remote add origin https:\\github.com/username/somenamewhichyouhavekept.git
+and then paste in git bash terminal
+$ git remote
+$ git remove -v
+
+***Generating SSH key***
+then we need to set up github account to update/read/write what ever done on computer
+go to settings>SSH and GPG keys> generating ssh keys link below ssh keys> genertaing a new ssh key and adding it....> copy the line of code saying ssh-keygen -t ed25519 -C "yourname@email.com" 
+then if you want to create some passcode to it you can or if you dont want then just click enter
+
+***Adding the ssh key to the ssh agent***
+now go to generating ssh keys link below ssh keys > adding your ssh key to the ssh-agent > copy code saying eval $(ssh-agent -s)
+and paste that in git bash terminal
+next copy the next code in add ssh key to ssh agent
+$ ssh-add ~/.ssh/id_ed25519 --> run in git bash terminal
+now go to adding a new ssh key to your github account and then copy the code sayinh: 
+$ cat ~/.ssh/id_ed25519.pub --> cat command shows all the content in it
+copy all the content generated and go to ssh keys and create a new ssh key and add the copied text and then add some title and there you go!
+now github can read/write the content on your pc to the git files hosted on it
+it's having read/write permissions
+
+***Pushing your files to repository***
+go to your repository and copy the ssh link on top of your repository
+something like: https://github.com/Varun26j05/gitlearn.git
+$ git remote set-rl origin https://github.com/Varun26j05/gitlearn.git
+run this command in git bash terminal
+$ git push -u origin master 
+if it prompts then login or else it will be pushed directly 
+now you can refresh your repository page and view all your code files in it
+
+we can view number of branches on the top of code
+https://media.discordapp.net/attachments/1063817801632067635/1066721712315576401/image.png
+
+to view all the branches in it then run:
+so you need to first switch to that branch
+$ git checkout nameofbranch
+and then we need to push this to the main code
+$ git push -u origin nameofbranch
+now you pushed the 2nd branch into the repository
+you can view all the commits in the history like symbol in the main repository page 
+in the commits page there is <> this symbol where you can view the page at that moment before adding that commit
+ 
+once we typed git push -u origin master
+from the next if we just type git push then it will automatically push master branch
+
+***Pulling the files***
+we have made some changes to the file in github and now we want to make those same changes to the local files on our pc then we use this git pull command
+$ git pull
+this will update all new changes to the git file online to the local repository
+
+***Cloning a git repository***
+go to a particular repository and click on code and then clone and ten copy the link near it and go to git bash terminal
+$ git clone thatlinkwhichyoucodied.git thefoldername
+if you dont mention the folder name which it need to save the cloned code then it will make a folder named something with the repository which you clone
+i.e
+$ git clone https://github.com/g0t0wasd/python.git varun
+now it creates a folder named varun and stores all the files in that repository in that folder
+$ ls --> to check out files that cloned
